@@ -31,7 +31,7 @@ namespace DeltaBotFour.Infrastructure.Implementation
             {
                 opRowContent += _appConfiguration.Posts.DeltaOPRowContent
                     .Replace(_appConfiguration.ReplaceTokens.UsernameToken, deltaComment.ToUsername)
-                    .Replace(_appConfiguration.ReplaceTokens.CommentLink, deltaComment.Permalink)
+                    .Replace(_appConfiguration.ReplaceTokens.CommentLink, String.join(deltaComment.Permalink, "?context=1"))
                     .Replace(_appConfiguration.ReplaceTokens.CommentText, deltaComment.CommentText.Ellipsis(MaxChars));
                 opRowContent += "\n\n";
             }
@@ -46,13 +46,13 @@ namespace DeltaBotFour.Infrastructure.Implementation
                 otherRowContent += _appConfiguration.Posts.DeltaOtherRowContent
                     .Replace(_appConfiguration.ReplaceTokens.UsernameFromToken, deltaComment.FromUsername)
                     .Replace(_appConfiguration.ReplaceTokens.UsernameToken, deltaComment.ToUsername)
-                    .Replace(_appConfiguration.ReplaceTokens.CommentLink, deltaComment.Permalink)
+                    .Replace(_appConfiguration.ReplaceTokens.CommentLink, String.join(deltaComment.Permalink, "?context=1"))
                     .Replace(_appConfiguration.ReplaceTokens.CommentText, deltaComment.CommentText.Ellipsis(MaxChars));
                 otherRowContent += "\n\n";
             }
 
             string content = _appConfiguration.Posts.DeltaLogContent
-                .Replace(_appConfiguration.ReplaceTokens.PostLink, mainPostPermalink)
+                .Replace(_appConfiguration.ReplaceTokens.PostLink, String.join(mainPostPermalink, "?context=1"))
                 .Replace(_appConfiguration.ReplaceTokens.UsernameToken, opUsername)
                 .Replace(_appConfiguration.ReplaceTokens.DeltaLogOPRowsToken, opRowContent)
                 .Replace(_appConfiguration.ReplaceTokens.DeltaLogOtherRowsToken, otherRowContent);
