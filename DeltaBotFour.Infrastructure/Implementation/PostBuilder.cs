@@ -52,7 +52,7 @@ namespace DeltaBotFour.Infrastructure.Implementation
             }
 
             string content = _appConfiguration.Posts.DeltaLogContent
-                .Replace(_appConfiguration.ReplaceTokens.PostLink, String.join(mainPostPermalink, "?context=1"))
+                .Replace(_appConfiguration.ReplaceTokens.PostLink, mainPostPermalink)
                 .Replace(_appConfiguration.ReplaceTokens.UsernameToken, opUsername)
                 .Replace(_appConfiguration.ReplaceTokens.DeltaLogOPRowsToken, opRowContent)
                 .Replace(_appConfiguration.ReplaceTokens.DeltaLogOtherRowsToken, otherRowContent);
